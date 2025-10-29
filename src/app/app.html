@@ -1,7 +1,18 @@
 <h1>Template Driven Forms</h1>
 <h1>{{ title }}</h1>
+<p>{{ id }}</p>
+<p>{{ apiData.name }} | {{ apiData.email }}</p>
 
-<a routerLink="/rforms">Go to Reactive Forms</a> &nbsp; | &nbsp;
-<a routerLink="/tforms">Go to Template Driven Forms</a> &nbsp; | &nbsp;
-<a routerLink="/taskforms">Go to Task Template Driven Forms</a>
+
+<button (click)="changeData()">ChangeData</button>
+<p>Data: {{ data._value }}</p>
+
+<input type="text" [(ngModel)] = "errMsg" placeholder="Enter error message"/>
+<button (click) = "setError()">Set Error</button>
+
+<nav>
+  <a routerLink="/rforms">Go to Reactive Forms</a> &nbsp; | &nbsp;
+  <a routerLink="/tforms">Go to Template Driven Forms</a> &nbsp; | &nbsp;
+  <a routerLink="/taskforms">Go to Task Template Driven Forms</a>
+</nav>
 <router-outlet></router-outlet>
