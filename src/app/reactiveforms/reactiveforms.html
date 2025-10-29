@@ -1,1 +1,86 @@
-<p>reactiveforms works!</p>
+<h1>{{ title }}</h1>
+
+<form novalidate [formGroup]="loginform" (ngSubmit)="onSubmit(loginUser())">
+  <div>
+    <label>
+      Full Name:
+      <input type="text" name="fullName" formControlName="name" /> </label
+    ><br /><br />
+    <span class="error" *ngIf="loginform.get('name')?.touched && loginform.get('name')?.invalid"
+      >Name is required.</span
+    >
+
+    <span class="error" *ngIf="loginform.get('name')?.errors?.['minlength']"
+      >Name should be minimum 3 characters.</span
+    >
+
+    <span class="error" *ngIf="loginform.get('name')?.errors?.['maxlength']"
+      >Name should not exceed 20 characters.</span
+    >
+
+    <span class="error" *ngIf="loginform.get('name')?.errors?.['pattern']"
+      >Name should contain only alphabets and spaces.</span
+    >
+    <span class="success" *ngIf="loginform.get('name')?.valid">Name looks good!</span>
+  </div>
+
+  <div>
+    <label>
+      Age:
+      <input type="number" name="age" formControlName="age" /> </label
+    ><br /><br />
+    <span class="error" *ngIf="loginform.get('age')?.touched && loginform.get('age')?.invalid"
+      >Age is required.</span
+    >
+
+    <span class="error" *ngIf="loginform.get('age')?.errors?.['min']"
+      >Age should be at least 1.</span
+    >
+    <span class="error" *ngIf="loginform.get('age')?.errors?.['max']"
+      >Age should not exceed 100.</span
+    >
+  </div>
+
+  <div>
+    <label>
+      Email:
+      <input
+        type="email"
+        name="email"
+        formControlName="email"
+        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+      /> </label
+    ><br /><br />
+    <span class="error" *ngIf="loginform.get('email')?.touched && loginform.get('email')?.invalid"
+      >Valid email is required.</span
+    >
+    <span class="success" *ngIf="loginform.get('email')?.valid">Email looks good!</span>
+  </div>
+
+  <div>
+    <label>
+      Password:
+      <input
+        type="password"
+        name="password"
+        formControlName="password"
+        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}"
+      /> </label
+    ><br /><br />
+    <span
+      class="error"
+      *ngIf="loginform.get('password')?.touched && loginform.get('password')?.invalid"
+      >Password is required.</span
+    >
+    <span class="error" *ngIf="loginform.get('password')?.errors?.['pattern']"
+      >Password must be at least 6 characters long and contain at least one number, one lowercase
+      and one uppercase letter.</span
+    >
+  </div>
+  <div>
+    <button type="button" (click)="setVal()">Set Data</button> &nbsp;
+    <button type="button" (click)="patchVal()">Patch Data</button> &nbsp;
+    <button type="submit">Submit</button> &nbsp;
+    <button type="reset">Reset</button>
+  </div>
+</form>

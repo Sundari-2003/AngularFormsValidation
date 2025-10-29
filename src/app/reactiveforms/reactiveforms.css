@@ -1,0 +1,17 @@
+form div{
+  margin-bottom: 12px;
+}
+
+.error{
+  color: red;
+  font-size: 12px;
+}
+
+.warning{
+  color: orange;
+  font-size: 12px;
+}
+.success{
+  color: green;
+  font-size: 12px;
+}

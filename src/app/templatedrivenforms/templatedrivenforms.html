@@ -1,1 +1,99 @@
-<p>templatedrivenforms works!</p>
+<p>{{ title }}</p>
+<form mlavalidate #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
+  <div>
+    <label
+      >name:<input
+        #name="ngModel"
+        type="text"
+        name="name"
+        required
+        [(ngModel)]="model.name"
+        minlength="7"
+    /></label>
+
+    <span class="success" [hidden]="name.invalid">Valid</span>
+    <span class="warning" [hidden]="name.valid || name.touched">Enter valid name</span>
+    <span class="error" [hidden]="name.valid || name.pristine">Name is required</span>
+  </div>
+
+  <div>
+    <label
+      >password:<input
+        #password="ngModel"
+        type="password"
+        name="password"
+        required
+        [(ngModel)]="model.password"
+        minlength="6"
+        pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$"
+    /></label>
+    <span class="success" [hidden]="password.invalid">Valid</span>
+    <span class="warning" [hidden]="password.valid || password.touched"
+      >Password must contain at least one uppercase letter, one lowercase letter, one number, and
+      one special character.</span
+    ><span class="error" [hidden]="password.valid || password.pristine">Password is required</span>
+  </div>
+
+  <div>
+    <label>
+      gender:<input
+        #gender="ngModel"
+        type="radio"
+        name="gender"
+        value="male"
+        [(ngModel)]="model.gender"
+      />Male &nbsp;&nbsp;
+      <input
+        #gender="ngModel"
+        type="radio"
+        name="gender"
+        value="female"
+        [(ngModel)]="model.gender"
+      />Female
+    </label>
+
+    <span class="success" [hidden]="gender.invalid || !gender.touched">Valid</span>
+    <span class="error" [hidden]="gender.valid || !gender.touched">Gender is required</span>
+    <span class="warning" [hidden]="gender.touched">Select Gender</span>
+  </div>
+
+  <div>
+    <label>
+      city:
+      <select #city="ngModel" name="city" required [(ngModel)]="model.city">
+        <option value="">Select City</option>
+        <option value="Bangalore">Bangalore</option>
+        <option value="Pune">Pune</option>
+        <option value="Chennai">Chennai</option>
+        <option value="Trichy">Trichy</option>
+      </select>
+    </label>
+
+    <span class="success" [hidden]="city.invalid">Valid</span>
+    <span class="error" [hidden]="city.valid || city.pristine">City is required</span>
+    <span class="warning" [hidden]="city.valid || city.touched"> Select City</span>
+  </div>
+
+  <div>
+    <label>
+      <input
+        #terms="ngModel"
+        type="checkbox"
+        name="terms"
+        required
+        [(ngModel)]="model.terms"
+      />Accept Terms and Conditions
+    </label>
+    <span class="success" [hidden]="terms.invalid">Valid</span>
+    <span class="error" [hidden]="terms.valid || terms.pristine">You must accept terms</span>
+    <span class="warning" [hidden]="terms.valid || terms.touched"> You must accept terms</span>
+  </div>
+
+  <div>
+    <button [disabled]="loginForm.invalid" type="submit">Submit</button>&nbsp;
+    <button (click)="loginForm.reset()">Reset</button>
+    <button (click)="model = { name: '', password: '', gender: '', city: '', terms: false }">
+      Clear
+    </button>
+  </div>
+</form>

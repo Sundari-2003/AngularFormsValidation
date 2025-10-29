@@ -1,0 +1,137 @@
+<p>{{ title }}</p>
+
+<form samplevalidate #userForm = "ngForm" (ngSubmit)="onSubmit(userForm)">
+
+    <div>
+        <label>
+            User First Name : <input
+            #userFirstName="ngModel"
+            type="text"
+            name="userFirstName"
+            [(ngModel)]="model.firstName"
+            required
+            minlength="5" />
+        </label><br> <br>
+    </div>
+
+    <div>
+        <label>
+        User Last Name : <input
+        #userLastName="ngModel"
+        type="text"
+        name="userLastName"
+        [(ngModel)]="model.lastName"
+        required
+        minlength="5" />
+        </label><br> <br>
+    </div>
+
+
+    <div>
+        <label>
+        Enter the User Name : <input
+        #userName="ngModel"
+        type="text"
+        name="userName"
+        [(ngModel)]="model.userName"
+        required
+        minlength="7" />
+        </label><br> <br>
+    </div>
+
+    <div>
+        <label>
+        Enter Password : <input
+        #userPassword="ngModel"
+        type="password"
+        name="userPassword"
+        [(ngModel)]="model.password"
+        required
+        pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$"
+        minlength="8" />
+        </label><br> <br>
+    </div>
+
+    <div>
+        <label>
+            Enter the Date of Birth : <input
+            #userDob="ngModel"
+            type="date"
+            name="userDob"
+            [(ngModel)]="model.dob"
+            required />
+        </label><br> <br>
+    </div>
+
+    <div>
+        <label>
+            Enter the email : <input
+            #userEmail="ngModel"
+            type="email"
+            name="userEmail"
+            [(ngModel)]="model.email"
+            required />
+        </label> <br> <br>
+    </div>
+
+    <div>
+        <label>
+            Enter the Address : <input
+            #userAddress="ngModel"
+            type="text"
+            name="userAddress"
+            [(ngModel)]="model.address"
+            required />
+        </label>
+    </div>
+
+    <div>
+  <label>Select your Skills:</label><br />
+
+  <label>
+    <input
+      type="checkbox"
+      [value]="'Angular'"
+      (change)="onSkillChange($event)"
+      [checked]="model.skills.includes('Angular')"
+    />
+    Angular
+  </label><br />
+
+  <label>
+    <input
+      type="checkbox"
+      [value]="'TypeScript'"
+      (change)="onSkillChange($event)"
+      [checked]="model.skills.includes('TypeScript')"
+    />
+    TypeScript
+  </label><br />
+
+  <label>
+    <input
+      type="checkbox"
+      [value]="'Git'"
+      (change)="onSkillChange($event)"
+      [checked]="model.skills.includes('Git')"
+    />
+    Git
+  </label><br />
+</div>
+
+<div>
+    <label>
+        Enter your location : <input
+        #userLocation="ngModel"
+        type="text"
+        name="userLocation"
+        [(ngModel)]="model.location"
+        required />
+    </label><br> <br>
+</div>
+
+<div>
+    <button type="submit" [disabled]="userForm.invalid">Submit</button> &nbsp;
+    <button type="reset" (click)="userForm.reset()">Reset</button>
+</div>
+</form>
